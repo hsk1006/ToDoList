@@ -1,60 +1,66 @@
-// 입력 필드와 할 일 목록 컨테이너 요소 선택
+// Select input field and task list container elements
 const inputBox = document.getElementById("input-box");
-const listContainer= document.getElementById("list-container");
+const listContainer = document.getElementById("list-container");
 
-// 할 일 추가 함수
-function addTask(){
-    // 입력 필드가 비어있는지 확인
-    if(inputBox.value === ''){
+// Function to add a new task
+function addTask() {
+
+    // Check if input field is empty
+    if (inputBox.value === '') {
         alert("You must write something!");
-    }
-    else{
-        // 새로운 할 일 목록 아이템 생성
+    } else {
+
+        // Create a new list item
         let li = document.createElement("li");
         li.innerHTML = inputBox.value;
         listContainer.appendChild(li);
 
-         // 삭제 버튼(span) 생성 및 추가
+        // Create delete button (span) and add to list item
         let span = document.createElement("span");
-        span.innerHTML = "\u00d7";// 곱하기 기호(×)
+        span.innerHTML = "\u00d7"; // "×" symbol
         li.appendChild(span);
     }
-     // 입력 필드 초기화
+
+    // Clear input field after adding task
     inputBox.value = "";
+
+    // Save updated task list
     saveData();
 }
 
-// Enter 키 입력 시 할 일 추가 이벤트 리스너
+// Add event listener for Enter key to submit task
 inputBox.addEventListener("keypress", function(e) {
-     // Enter 키 눌렀을 때 addTask 함수 호출
     if (e.key === "Enter") {
         addTask();
     }
 });
 
-// 할 일 목록 이벤트 리스너 (할 일 완료 및 삭제)
-listContainer.addEventListener("click", function(e){
-    // 할 일 아이템 클릭 시 완료/미완료 토글
-    if(e.target.tagName === "LI"){
+// Add event listener for task list actions (complete / delete)
+listContainer.addEventListener("click", function(e) {
+
+    // Toggle completed state when task is clicked
+    if (e.target.tagName === "LI") {
         e.target.classList.toggle("checked");
         saveData();
     }
-     // 삭제 버튼 클릭 시 해당 할 일 삭제
-    else if(e.target.tagName === "SPAN"){
+
+    // Remove task when delete button is clicked
+    else if (e.target.tagName === "SPAN") {
         e.target.parentElement.remove();
         saveData();
     }
+
 }, false);
 
-
-// 로컬 스토리지에 할 일 목록 저장 함수
-function saveData(){
+// Save task list to local storage
+function saveData() {
     localStorage.setItem("data", listContainer.innerHTML);
 }
-// 로컬 스토리지에서 할 일 목록 불러오기 함수
-function showTask(){
+
+// Load task list from local storage
+function showTask() {
     listContainer.innerHTML = localStorage.getItem("data");
 }
 
-// 페이지 로드 시 저장된 할 일 목록 표시
+// Display saved tasks on page load
 showTask();
