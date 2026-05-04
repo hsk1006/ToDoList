@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1"><!-- 반응형 뷰포트 설정 -->
-        <title>To-Do List App</title><!-- 페이지 제목 -->
-        <link rel="stylesheet" href="style.css"><!-- 외부 CSS 파일 연결 -->
+        <!-- Set responsive viewport -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Page title -->
+        <title>To-Do List App</title>
+
+        <!-- Link external CSS file -->
+        <link rel="stylesheet" href="style.css">
     </head>
+
     <body>
-        <div class="container"><!-- 전체 컨테이너 -->
-            <div class="todo-app"><!-- 할 일 앱 영역 -->
-                <h2>To-do List <img src="to-do list.jpg"></h2><!-- 앱 제목 및 아이콘 -->
-                <div class="row"> <!-- 입력 필드 컨테이너 -->
-                    <input type="text" id="input-box" placeholder="Add your text"><!-- 할 일 입력 필드 -->
-                    <button onclick="addTask()">Add</button><!-- 할 일 추가 버튼 -->
+        <!-- Main container -->
+        <div class="container">
+
+            <!-- To-Do App section -->
+            <div class="todo-app">
+
+                <!-- App title with icon -->
+                <h2>To-Do List <img src="to-do list.jpg"></h2>
+
+                <!-- Input section -->
+                <div class="row">
+
+                    <!-- Input field for tasks -->
+                    <input type="text" id="input-box" placeholder="Add a new task">
+
+                    <!-- Button to add task -->
+                    <button onclick="addTask()">Add</button>
                 </div>
+
+                <!-- List container for tasks -->
                 <ul id="list-container">
                 </ul>
+
             </div>
         </div>
-        <script src="script.js"></script><!-- 자바스크립트 파일 연결 -->
+
+        <!-- Link JavaScript file -->
+        <script src="script.js"></script>
     </body>
 </html>
